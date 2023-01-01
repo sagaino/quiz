@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/model/question_model.dart';
+import 'package:quiz/module/home_page/controller/home_page_controller.dart';
 import 'package:quiz/module/topic_page/controller/topic_page_controller.dart';
 import 'package:quiz/module/topic_page/widget/topic_item.dart';
 import 'package:quiz/services/question_services.dart';
@@ -26,9 +27,10 @@ class TopicPageView extends StatefulWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: QuestionService.questions.length,
+              // itemCount: QuestionService.questions.length,
+              itemCount: HomePageController.instance.dataQuestions.length,
               itemBuilder: (BuildContext context, index) {
-                var item = QuestionService.questions[index];
+                var item = HomePageController.instance.dataQuestions[index];
                 return Container(
                   padding: const EdgeInsets.only(
                     bottom: 10,

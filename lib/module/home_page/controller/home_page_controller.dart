@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:quiz/model/question_model.dart';
 import 'package:quiz/module/home_page/view/home_page_view.dart';
 import 'package:quiz/module/quiz_page/view/quiz_page_view.dart';
 import 'package:quiz/services/question_services.dart';
@@ -13,6 +14,7 @@ class HomePageController extends State<HomePageView> {
   void initState() {
     instance = this;
     QuestionService().fetchQuestion();
+    fetchData();
     super.initState();
   }
 
@@ -28,9 +30,17 @@ class HomePageController extends State<HomePageView> {
       context,
       MaterialPageRoute(
         builder: (context) => QuizPageView(
-          QuestionService.questions[randomIndex]["questions"],
+          dataQuestions[randomIndex].questions,
         ),
       ),
     );
+  }
+
+  List<QuestionModel> dataQuestions = [];
+
+  void fetchData() async {
+    List<QuestionModel> questions =
+        await QuestionService().fetchQuestionWithModul();
+    dataQuestions=questions;
   }
 }

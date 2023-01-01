@@ -5,7 +5,7 @@ import 'package:quiz/module/quiz_page/widget/quiz_item.dart';
 import 'package:quiz/theme.dart';
 
 class QuizPageView extends StatefulWidget {
-  final dynamic data;
+  final List<Question> data;
   const QuizPageView(
     this.data, {
     Key? key,
@@ -74,11 +74,11 @@ class QuizPageView extends StatefulWidget {
               height: 15.0,
             ),
 
-            controller.questIndex < data.length
+            controller.questIndex < controller.questionList.length
                 ? QuizItem(
                     answerQuestion: (e) => controller.answerQuestion(e),
                     questionIndex: controller.questIndex,
-                    questions: data,
+                    questions: controller.questionList,
                   )
                 : Text("asd"),
           ],

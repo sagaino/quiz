@@ -4,8 +4,9 @@ import 'package:quiz/model/question_model.dart';
 class QuestionService {
   final CollectionReference _questionRef =
       FirebaseFirestore.instance.collection("topics");
-  // final FirebaseFirestore _db = FirebaseFirestore.instance;
+
   static List questions = [];
+  
   Future<List<void>> fetchQuestion() async {
     try {
       QuerySnapshot result = await _questionRef.get();
@@ -18,13 +19,21 @@ class QuestionService {
         return data;
       }
       return questions;
-      // QuerySnapshot<Map<String, dynamic>> result =
-      //     await _db.collection("topics").get();
-      // return result.docs
-      //     .map(
-      //       (docSnapshot) => QuestionModel.fromDocumentSnapshot(docSnapshot),
-      //     )
-      //     .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<QuestionModel>> fetchQuestionWithModul() async {
+    try {
+      QuerySnapshot result = await _questionRef.get();
+      List<QuestionModel> data = result.docs.map((item) {
+        return QuestionModel.fromJson(
+          item.id,
+          item.data() as Map<String, dynamic>,
+        );
+      }).toList();
+      return data;
     } catch (e) {
       rethrow;
     }

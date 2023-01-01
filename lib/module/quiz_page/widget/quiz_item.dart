@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/model/question_model.dart';
 import 'package:quiz/module/quiz_page/widget/answer_item.dart';
 import 'package:quiz/theme.dart';
 
 class QuizItem extends StatelessWidget {
-  final dynamic questions;
+  final List<Question> questions;
   final int questionIndex;
   final Function answerQuestion;
 
@@ -32,7 +33,7 @@ class QuizItem extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  questions[questionIndex]['questionText'].toString(),
+                  questions[questionIndex].questionText.toString(),
                   style: blackTextStyle.copyWith(
                     fontSize: 20.0,
                     fontWeight: medium,
@@ -44,7 +45,7 @@ class QuizItem extends StatelessWidget {
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(questions[questionIndex]['imageUrl']),
+                          image: NetworkImage(questions[questionIndex].imageUrl),
                           fit: BoxFit.cover),
                     ),
                   ),
@@ -57,34 +58,17 @@ class QuizItem extends StatelessWidget {
           height: 20.0,
         ),
 
-        ...(questions[questionIndex]['answers'])
+        ...(questions[questionIndex].answers)
             .map(
           (item) {
             return AnswerItem(
-              title: item["text"].toString(),
+              title: item.text.toString(),
               onPressed: () {
-                answerQuestion(item['score']);
+                answerQuestion(item.score);
               },
             );
           },
         ).toList(),
-
-        // AnswerItem(
-        //   title: "asd",
-        //   onPressed: () {},
-        // ),
-        // AnswerItem(
-        //   title: "asd",
-        //   onPressed: () {},
-        // ),
-        // AnswerItem(
-        //   title: "asd",
-        //   onPressed: () {},
-        // ),
-        // AnswerItem(
-        //   title: "asd",
-        //   onPressed: () {},
-        // ),
       ],
     );
   }

@@ -4,7 +4,7 @@ import 'package:quiz/module/quiz_page/view/quiz_page_view.dart';
 import 'package:quiz/theme.dart';
 
 class TopicItem extends StatelessWidget {
-  final dynamic dataTopics;
+  final QuestionModel dataTopics;
   const TopicItem({
     super.key,
     required this.dataTopics,
@@ -17,7 +17,7 @@ class TopicItem extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => QuizPageView(
-            dataTopics["questions"],
+            dataTopics.questions,
           ),
         ),
       ),
@@ -38,7 +38,7 @@ class TopicItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                dataTopics["topicName"].toString(),
+                dataTopics.topicName.toString(),
                 style: whiteTextStyle.copyWith(
                   fontSize: 16.0,
                   fontWeight: medium,

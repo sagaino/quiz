@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/model/question_model.dart';
 import 'package:quiz/module/quiz_page/view/quiz_page_view.dart';
 import 'package:quiz/module/result_page/view/result_page_view.dart';
 import 'package:quiz/services/question_services.dart';
@@ -50,7 +51,7 @@ class QuizPageController extends State<QuizPageView>
 
   @override
   Widget build(BuildContext context) => widget.build(context, this);
-  get questionList => view.data;
+  List<Question> get questionList => view.data;
 
   var questIndex = 0;
   var totalScore = 0;
