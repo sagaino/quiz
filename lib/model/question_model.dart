@@ -1,11 +1,3 @@
-// import 'dart:convert';
-
-// List<QuestionModel> questionFromJson(String str) => List<QuestionModel>.from(
-//     json.decode(str).map((x) => QuestionModel.fromJson(x)));
-
-// String questionToJson(List<QuestionModel> data) =>
-//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class QuestionModel {
   String id;
   String topicName;
@@ -21,7 +13,7 @@ class QuestionModel {
     return {
       "id": id,
       "topicName": topicName,
-      // "questions": questions,
+      "questions": questions,
     };
   }
 
