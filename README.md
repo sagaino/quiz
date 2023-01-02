@@ -1,6 +1,6 @@
 # quiz
 
-A new Flutter project.
+in this project using MVC architecture, and firestore as database
 
 ## Getting Started
 
